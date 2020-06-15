@@ -1,0 +1,15 @@
+name: prompt_dialog
+description: Prompt Dialog Widget JS-LIKE for Flutter. Use prompt dialog easy and simple for your flutter app.
+version: 0.0.1
+homepage: https://github.com/gtgalone/prompt_dialog
+
+environment:
+  sdk: ">=2.7.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
