@@ -22,7 +22,7 @@ Future<String> prompt(
     context: context,
     builder: (_) => WillPopScope(
       child: AlertDialog(
-        title: (title != null) ? title : null,
+        title: title,
         content: TextFormField(
           autofocus: autoFocus,
           initialValue: initialValue,
