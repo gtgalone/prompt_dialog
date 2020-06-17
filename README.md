@@ -69,10 +69,10 @@ class MyApp extends StatelessWidget {
             onPressed: () async {
               return print(await prompt(
                 context,
-                message: 'Would you like to remove?',
+                title: Text('Would you like to remove?'),
                 initialValue: 'Sure',
-                textOK: 'Yes',
-                textCancel: 'No',
+                textOK: Text('Yes'),
+                textCancel: Text('No'),
                 autoFocus: true,
               ));
             },
@@ -83,3 +83,16 @@ class MyApp extends StatelessWidget {
   }
 }
 ```
+---
+## Recommend Libraries
+
+- [Confirm Dialog](https://github.com/gtgalone/confirm_dialog) - Confirm Dialog Widget for Flutter(JS-LIKE).
+- [Alert Dialog](https://github.com/gtgalone/alert_dialog) - Alert Dialog Widget for Flutter(JS-LIKE).
+
+## Maintainer
+
+- [Jehun Seem](https://github.com/gtgalone)
+
+## License
+
+MIT

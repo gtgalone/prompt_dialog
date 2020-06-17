@@ -5,3 +5,7 @@
 # 0.0.2
 
   * Add api document and will pop scope.
+
+# 0.0.3
+
+  * Change passing as widget.

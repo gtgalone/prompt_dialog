@@ -19,10 +19,10 @@ class MyApp extends StatelessWidget {
             onPressed: () async {
               return print(await prompt(
                 context,
-                message: 'Would you like to remove?',
+                title: Text('Would you like to remove?'),
                 initialValue: 'Sure',
-                textOK: 'Yes',
-                textCancel: 'No',
+                textOK: Text('Yes'),
+                textCancel: Text('No'),
                 autoFocus: true,
               ));
             },
