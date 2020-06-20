@@ -10,10 +10,10 @@ https://pub.dev/packages/prompt_dialog
 ### Add pubspec.yaml
 ``` yaml
 dependencies:
-  prompt_dialog: lastest_version
+  prompt_dialog: <lastest_version>
 ```
 ---
-## Example
+## Usage
 
 ### Basic
 ``` dart
@@ -88,6 +88,7 @@ class MyApp extends StatelessWidget {
 
 - [Confirm Dialog](https://github.com/gtgalone/confirm_dialog) - Confirm Dialog Widget for Flutter(JS-LIKE).
 - [Alert Dialog](https://github.com/gtgalone/alert_dialog) - Alert Dialog Widget for Flutter(JS-LIKE).
+- [Currency Text Input Formatter](https://github.com/gtgalone/currency_text_input_formatter) - Currency Text Input Formatter for Flutter.
 
 ## Maintainer
 
