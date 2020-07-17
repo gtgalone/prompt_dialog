@@ -13,3 +13,7 @@
 # 0.1.0
 
   * Add example main.
+
+# 0.1.1
+
+  * Add hintText, maxLines and minLines properties.

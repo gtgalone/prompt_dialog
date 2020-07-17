@@ -73,6 +73,9 @@ class MyApp extends StatelessWidget {
                 initialValue: 'Sure',
                 textOK: Text('Yes'),
                 textCancel: Text('No'),
+                hintText: 'Please write reason',
+                minLines: 1,
+                maxLines: 3,
                 autoFocus: true,
               ));
             },
