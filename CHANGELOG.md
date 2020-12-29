@@ -17,3 +17,7 @@
 # 0.1.1
 
   * Add hintText, maxLines and minLines properties.
+
+# 0.1.2
+
+  * Add obscureText and obscuringCharacter properties.
