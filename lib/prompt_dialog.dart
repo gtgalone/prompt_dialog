@@ -8,6 +8,8 @@ import 'package:flutter/material.dart';
 /// The `minLines` argument will be minLines text field form of alert dialog.
 /// The `maxLines` argument will be maxLines text field form of alert dialog.
 /// The `autoFocus` argument will be autoFocus text field form of alert dialog.
+/// The `obscureText` argument will be obscureText text field form of alert dialog.
+/// The `obscuringCharacter` argument will be obscuringCharacter text field form of alert dialog.
 ///
 /// Returns a [Future<bool>].
 Future<String> prompt(
@@ -20,6 +22,8 @@ Future<String> prompt(
   int minLines = 1,
   int maxLines = 1,
   bool autoFocus: false,
+  bool obscureText: false,
+  String obscuringCharacter: '•',
 }) {
   String value;
   return showDialog(
@@ -34,6 +38,8 @@ Future<String> prompt(
           autofocus: autoFocus,
           initialValue: initialValue,
           onChanged: (text) => value = text,
+          obscureText: obscureText,
+          obscuringCharacter: obscuringCharacter,
         ),
         actions: <Widget>[
           FlatButton(
