@@ -10,7 +10,7 @@ https://pub.dev/packages/prompt_dialog
 ### Add pubspec.yaml
 ``` yaml
 dependencies:
-  prompt_dialog: <lastest_version>
+  prompt_dialog: ^0.1.2
 ```
 ---
 ## Usage

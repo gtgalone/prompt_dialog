@@ -1,0 +1,23 @@
+name: example
+version: 1.0.0
+homepage: https://github.com/gtgalone/prompt_dialog
+publish_to: "none"
+
+environment:
+  sdk: ">=2.7.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  prompt_dialog:
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_driver:
+    sdk: flutter
+  test: ^1.15.7
+
+dependency_overrides:
+  prompt_dialog:
+    path: ../

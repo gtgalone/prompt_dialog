@@ -20,4 +20,4 @@
 
 # 0.1.2
 
-  * Add obscureText and obscuringCharacter properties.
+  * Add obscureText and obscuringCharacter properties. Huge Thanks! @tpillow
