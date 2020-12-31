@@ -21,3 +21,7 @@
 # 0.1.2
 
   * Add obscureText and obscuringCharacter properties. Huge Thanks! @tpillow
+
+# 0.1.3
+
+  * Add textCapitalization property. Huge Thanks! @joachimvalente

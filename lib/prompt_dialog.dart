@@ -10,6 +10,7 @@ import 'package:flutter/material.dart';
 /// The `autoFocus` argument will be autoFocus text field form of alert dialog.
 /// The `obscureText` argument will be obscureText text field form of alert dialog.
 /// The `obscuringCharacter` argument will be obscuringCharacter text field form of alert dialog.
+/// The `textCapitalization` argument will be textCapitalization text field form of alert dialog.
 ///
 /// Returns a [Future<bool>].
 Future<String> prompt(

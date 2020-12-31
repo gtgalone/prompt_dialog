@@ -27,6 +27,9 @@ class MyApp extends StatelessWidget {
                 minLines: 1,
                 maxLines: 3,
                 autoFocus: true,
+                obscureText: false,
+                obscuringCharacter: '•',
+                textCapitalization: TextCapitalization.words,
               ));
             },
           ),
