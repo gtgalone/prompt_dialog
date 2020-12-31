@@ -24,6 +24,7 @@ Future<String> prompt(
   bool autoFocus: false,
   bool obscureText: false,
   String obscuringCharacter: '•',
+  TextCapitalization textCapitalization = TextCapitalization.none,
 }) {
   String value;
   return showDialog(
@@ -40,6 +41,7 @@ Future<String> prompt(
           onChanged: (text) => value = text,
           obscureText: obscureText,
           obscuringCharacter: obscuringCharacter,
+          textCapitalization: textCapitalization,
         ),
         actions: <Widget>[
           FlatButton(
