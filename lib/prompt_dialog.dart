@@ -1,3 +1,5 @@
+library prompt_dialog;
+
 import 'package:flutter/material.dart';
 
 /// The `title` argument is used to title of alert dialog.
@@ -8,6 +10,8 @@ import 'package:flutter/material.dart';
 /// The `minLines` argument will be minLines text field form of alert dialog.
 /// The `maxLines` argument will be maxLines text field form of alert dialog.
 /// The `autoFocus` argument will be autoFocus text field form of alert dialog.
+/// The `keyboardType` argument will be keyboardType text field form of alert dialog.
+/// The `textInputAction` argument will be textInputAction text field form of alert dialog.
 /// The `obscureText` argument will be obscureText text field form of alert dialog.
 /// The `obscuringCharacter` argument will be obscuringCharacter text field form of alert dialog.
 /// The `textCapitalization` argument will be textCapitalization text field form of alert dialog.
@@ -23,6 +27,8 @@ Future<String> prompt(
   int minLines = 1,
   int maxLines = 1,
   bool autoFocus: false,
+  TextInputType keyboardType,
+  TextInputAction textInputAction,
   bool obscureText: false,
   String obscuringCharacter: '•',
   TextCapitalization textCapitalization = TextCapitalization.none,
@@ -38,6 +44,8 @@ Future<String> prompt(
           minLines: minLines,
           maxLines: maxLines,
           autofocus: autoFocus,
+          keyboardType: keyboardType,
+          textInputAction: textInputAction,
           initialValue: initialValue,
           onChanged: (text) => value = text,
           obscureText: obscureText,
@@ -45,10 +53,10 @@ Future<String> prompt(
           textCapitalization: textCapitalization,
         ),
         actions: <Widget>[
-          FlatButton(
+          TextButton(
               child: textCancel != null ? textCancel : Text('Cancel'),
               onPressed: () => Navigator.pop(context, null)),
-          FlatButton(
+          TextButton(
               child: textOK != null ? textOK : Text('OK'),
               onPressed: () => Navigator.pop(context, value)),
         ],

@@ -25,3 +25,7 @@
 # 0.1.3
 
   * Add textCapitalization property. Huge Thanks! @joachimvalente
+
+# 0.1.4
+
+  * Add keyboardType, textInputAction property.
