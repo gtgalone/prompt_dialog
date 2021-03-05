@@ -29,3 +29,7 @@
 # 0.1.4
 
   * Add keyboardType, textInputAction property.
+
+# 1.0.0
+
+  * Apply null safety.

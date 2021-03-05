@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
           title: Text('Welcome to Flutter'),
         ),
         body: Center(
-          child: FlatButton(
+          child: TextButton(
             child: Text('Prompt Dialog'),
             onPressed: () async {
               return print(await prompt(context));
