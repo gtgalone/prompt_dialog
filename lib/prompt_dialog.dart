@@ -16,7 +16,7 @@ import 'package:flutter/material.dart';
 /// The `obscuringCharacter` argument will be obscuringCharacter text field form of alert dialog.
 /// The `textCapitalization` argument will be textCapitalization text field form of alert dialog.
 ///
-/// Returns a [Future<bool>].
+/// Returns a [Future<String?>].
 Future<String?> prompt(
   BuildContext context, {
   Widget? title,
