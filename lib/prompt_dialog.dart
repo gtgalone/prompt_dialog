@@ -17,23 +17,23 @@ import 'package:flutter/material.dart';
 /// The `textCapitalization` argument will be textCapitalization text field form of alert dialog.
 ///
 /// Returns a [Future<String?>].
-Future<String?> prompt(
+Future<String> prompt(
   BuildContext context, {
-  Widget? title,
-  Widget? textOK,
-  Widget? textCancel,
-  String? initialValue,
-  String? hintText,
+  Widget title,
+  Widget textOK,
+  Widget textCancel,
+  String initialValue,
+  String hintText,
   int minLines = 1,
   int maxLines = 1,
   bool autoFocus: false,
-  TextInputType? keyboardType,
-  TextInputAction? textInputAction,
+  TextInputType keyboardType,
+  TextInputAction textInputAction,
   bool obscureText: false,
   String obscuringCharacter: '•',
   TextCapitalization textCapitalization = TextCapitalization.none,
 }) {
-  String? value;
+  String value = initialValue;
   return showDialog(
     context: context,
     builder: (_) => WillPopScope(
@@ -47,7 +47,9 @@ Future<String?> prompt(
           keyboardType: keyboardType,
           textInputAction: textInputAction,
           initialValue: initialValue,
-          onChanged: (text) => value = text,
+          onChanged: (text) => {
+            value = text
+          },
           obscureText: obscureText,
           obscuringCharacter: obscuringCharacter,
           textCapitalization: textCapitalization,
