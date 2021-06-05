@@ -2,36 +2,39 @@ import 'package:flutter/material.dart';
 
 import 'package:prompt_dialog/prompt_dialog.dart';
 
-void main() => runApp(MyApp());
+void main() => runApp(const MyApp());
 
 class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Welcome to Flutter',
       home: Scaffold(
         appBar: AppBar(
-          title: Text('Welcome to Flutter'),
+          title: const Text('Welcome to Flutter'),
         ),
         body: Center(
           child: TextButton(
-            child: Text('Prompt Dialog'),
             onPressed: () async {
+              // ignore: avoid_print
               return print(await prompt(
                 context,
-                title: Text('Would you like to remove?'),
+                title: const Text('Would you like to remove?'),
                 initialValue: 'Sure',
-                textOK: Text('Yes'),
-                textCancel: Text('No'),
+                textOK: const Text('Yes'),
+                textCancel: const Text('No'),
                 hintText: 'Please write reason',
-                minLines: 1,
+                minLines: 2,
                 maxLines: 3,
-                autoFocus: true,
-                obscureText: false,
-                obscuringCharacter: '•',
+                autoFocus: false,
+                obscureText: true,
+                obscuringCharacter: '*',
                 textCapitalization: TextCapitalization.words,
               ));
             },
+            child: const Text('Prompt Dialog'),
           ),
         ),
       ),

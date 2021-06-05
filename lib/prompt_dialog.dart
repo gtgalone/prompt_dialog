@@ -26,17 +26,21 @@ Future<String?> prompt(
   String? hintText,
   int minLines = 1,
   int maxLines = 1,
-  bool autoFocus: false,
+  bool autoFocus = true,
   TextInputType? keyboardType,
   TextInputAction? textInputAction,
-  bool obscureText: false,
-  String obscuringCharacter: '•',
+  bool obscureText = false,
+  String obscuringCharacter = '•',
   TextCapitalization textCapitalization = TextCapitalization.none,
 }) {
   String? value;
   return showDialog(
     context: context,
     builder: (_) => WillPopScope(
+      onWillPop: () async {
+        Navigator.pop(context, null);
+        return true;
+      },
       child: AlertDialog(
         title: title,
         content: TextFormField(
@@ -54,17 +58,15 @@ Future<String?> prompt(
         ),
         actions: <Widget>[
           TextButton(
-              child: textCancel != null ? textCancel : Text('Cancel'),
-              onPressed: () => Navigator.pop(context, null)),
+            onPressed: () => Navigator.pop(context, null),
+            child: (textCancel != null) ? textCancel : const Text('Cancel'),
+          ),
           TextButton(
-              child: textOK != null ? textOK : Text('OK'),
-              onPressed: () => Navigator.pop(context, value)),
+            onPressed: () => Navigator.pop(context, value),
+            child: (textOK != null) ? textOK : const Text('OK'),
+          ),
         ],
       ),
-      onWillPop: () async {
-        Navigator.pop(context, null);
-        return true;
-      },
     ),
   );
 }

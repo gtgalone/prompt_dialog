@@ -33,3 +33,7 @@
 # 1.0.0
 
   * Apply null safety.
+
+# 1.0.1
+
+  * Change default value of autofocus to true.
