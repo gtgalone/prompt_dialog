@@ -37,3 +37,7 @@
 # 1.0.1
 
   * Change default value of autofocus to true.
+
+# 1.0.2
+
+  * Add onEditingComplete property.(#6)

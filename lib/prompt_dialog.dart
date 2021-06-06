@@ -2,18 +2,18 @@ library prompt_dialog;
 
 import 'package:flutter/material.dart';
 
-/// The `title` argument is used to title of alert dialog.
-/// The `textOK` argument is used to text for 'OK' Button of alert dialog.
-/// The `textCancel` argument is used to text for 'Cancel' Button of alert dialog.
-/// The `initialValue` argument is used to initial value of alert dialog.
-/// The `hintText` argument will be hintText text field form of alert dialog.
-/// The `minLines` argument will be minLines text field form of alert dialog.
-/// The `maxLines` argument will be maxLines text field form of alert dialog.
-/// The `autoFocus` argument will be autoFocus text field form of alert dialog.
-/// The `keyboardType` argument will be keyboardType text field form of alert dialog.
-/// The `textInputAction` argument will be textInputAction text field form of alert dialog.
-/// The `obscureText` argument will be obscureText text field form of alert dialog.
-/// The `obscuringCharacter` argument will be obscuringCharacter text field form of alert dialog.
+/// The `title` argument is used to title of alert dialog.\
+/// The `textOK` argument is used to text for 'OK' Button of alert dialog.\
+/// The `textCancel` argument is used to text for 'Cancel' Button of alert dialog.\
+/// The `initialValue` argument is used to initial value of alert dialog.\
+/// The `hintText` argument will be hintText text field form of alert dialog.\
+/// The `minLines` argument will be minLines text field form of alert dialog.\
+/// The `maxLines` argument will be maxLines text field form of alert dialog.\
+/// The `autoFocus` argument will be autoFocus text field form of alert dialog.\
+/// The `keyboardType` argument will be keyboardType text field form of alert dialog.\
+/// The `textInputAction` argument will be textInputAction text field form of alert dialog.\
+/// The `obscureText` argument will be obscureText text field form of alert dialog.\
+/// The `obscuringCharacter` argument will be obscuringCharacter text field form of alert dialog.\
 /// The `textCapitalization` argument will be textCapitalization text field form of alert dialog.
 ///
 /// Returns a [Future<String?>].
@@ -55,6 +55,7 @@ Future<String?> prompt(
           obscureText: obscureText,
           obscuringCharacter: obscuringCharacter,
           textCapitalization: textCapitalization,
+          onEditingComplete: () => Navigator.pop(context, value),
         ),
         actions: <Widget>[
           TextButton(
