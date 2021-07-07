@@ -41,3 +41,7 @@
 # 1.0.2
 
   * Add onEditingComplete property.(#6)
+
+# 1.0.3
+
+  * Fix for returning initialValue.(#8) Huge Thanks! @gnilron

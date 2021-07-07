@@ -63,7 +63,8 @@ Future<String?> prompt(
             child: (textCancel != null) ? textCancel : const Text('Cancel'),
           ),
           TextButton(
-            onPressed: () => Navigator.pop(context, value),
+            onPressed: () => Navigator.pop(context,
+                (value == null && initialValue != null) ? initialValue : value),
             child: (textOK != null) ? textOK : const Text('OK'),
           ),
         ],
