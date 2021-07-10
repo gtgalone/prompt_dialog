@@ -31,44 +31,71 @@ Future<String?> prompt(
   TextInputAction? textInputAction,
   bool obscureText = false,
   String obscuringCharacter = '•',
+  bool showPasswordIcon = false,
+  bool barrierDismissible = false,
   TextCapitalization textCapitalization = TextCapitalization.none,
 }) {
-  String? value;
+  String? value = initialValue;
+  TextEditingController controller = TextEditingController(text: initialValue);
+  int keyCtr = 0;
   return showDialog(
+    barrierDismissible: barrierDismissible,
     context: context,
-    builder: (_) => WillPopScope(
-      onWillPop: () async {
-        Navigator.pop(context, null);
-        return true;
-      },
-      child: AlertDialog(
-        title: title,
-        content: TextFormField(
-          decoration: InputDecoration(hintText: hintText),
-          minLines: minLines,
-          maxLines: maxLines,
-          autofocus: autoFocus,
-          keyboardType: keyboardType,
-          textInputAction: textInputAction,
-          initialValue: initialValue,
-          onChanged: (text) => value = text,
-          obscureText: obscureText,
-          obscuringCharacter: obscuringCharacter,
-          textCapitalization: textCapitalization,
-          onEditingComplete: () => Navigator.pop(context, value),
-        ),
-        actions: <Widget>[
-          TextButton(
-            onPressed: () => Navigator.pop(context, null),
-            child: (textCancel != null) ? textCancel : const Text('Cancel'),
-          ),
-          TextButton(
-            onPressed: () => Navigator.pop(context,
-                (value == null && initialValue != null) ? initialValue : value),
-            child: (textOK != null) ? textOK : const Text('OK'),
-          ),
-        ],
-      ),
-    ),
+    builder: (context) {
+      return StatefulBuilder(
+        builder: (BuildContext context, StateSetter setState) {
+          return WillPopScope(
+            onWillPop: () async {
+              Navigator.pop(context, null);
+              return true;
+            },
+            child: AlertDialog(
+              title: title,
+              content: TextFormField(
+                key: Key('1_' + keyCtr.toString()),
+                controller: controller,
+                decoration: InputDecoration(hintText: hintText,
+                  suffixIcon: showPasswordIcon
+                      ? IconButton(icon: Icon(
+                    Icons.remove_red_eye,
+                    color: obscureText ? Colors.grey : Colors.blueGrey,
+                  ),
+                    onPressed: () {
+                      obscureText = !obscureText;
+                      keyCtr++;
+                      setState(() {
+                        controller.selection = TextSelection.fromPosition(TextPosition(offset: 0));
+                        controller.selection = TextSelection.fromPosition(TextPosition(offset: controller.text.length));
+                      });
+                    },
+                  ) : null,
+                ),
+                minLines: minLines,
+                maxLines: maxLines,
+                autofocus: autoFocus,
+                keyboardType: keyboardType,
+                textInputAction: textInputAction,
+                // initialValue: initialValue, already in TextEditingController
+                onChanged: (text) => value = text,
+                obscureText: obscureText,
+                obscuringCharacter: obscuringCharacter,
+                textCapitalization: textCapitalization,
+                onEditingComplete: () => Navigator.pop(context, value),
+              ),
+              actions: <Widget>[
+                TextButton(
+                  onPressed: () => Navigator.pop(context, null),
+                  child: (textCancel != null) ? textCancel : const Text('Cancel'),
+                ),
+                TextButton(
+                  onPressed: () => Navigator.pop(context, value),
+                  child: (textOK != null) ? textOK : const Text('OK'),
+                ),
+              ],
+            ),
+          );
+        },
+      );
+    },
   );
 }
