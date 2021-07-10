@@ -10,7 +10,7 @@ https://pub.dev/packages/prompt_dialog
 ### Add pubspec.yaml
 ``` yaml
 dependencies:
-  prompt_dialog: ^1.0.3
+  prompt_dialog: ^1.0.4
 ```
 ---
 ## Usage
@@ -79,6 +79,8 @@ class MyApp extends StatelessWidget {
                 autoFocus: true,
                 obscureText: false,
                 obscuringCharacter: '•',
+                showPasswordIcon: true,
+                barrierDismissible: true,
                 textCapitalization: TextCapitalization.words,
               ));
             },

@@ -45,3 +45,10 @@
 # 1.0.3
 
   * Fix for returning initialValue.(#8) Huge Thanks! @gnilron
+
+# 1.0.4
+
+  * Add showPasswordIcon.
+  * Add barrierDismissible.
+  * Simpler fix for returning initialValue if no changes.
+  * Huge Thanks! @FRFGCCEVCV

@@ -18,7 +18,6 @@ class MyApp extends StatelessWidget {
         body: Center(
           child: TextButton(
             onPressed: () async {
-              // ignore: avoid_print
               return print(await prompt(
                 context,
                 title: const Text('Would you like to remove?'),
@@ -31,6 +30,8 @@ class MyApp extends StatelessWidget {
                 autoFocus: false,
                 obscureText: true,
                 obscuringCharacter: '*',
+                showPasswordIcon: true,
+                barrierDismissible: true,
                 textCapitalization: TextCapitalization.words,
               ));
             },

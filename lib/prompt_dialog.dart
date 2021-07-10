@@ -14,6 +14,8 @@ import 'package:flutter/material.dart';
 /// The `textInputAction` argument will be textInputAction text field form of alert dialog.\
 /// The `obscureText` argument will be obscureText text field form of alert dialog.\
 /// The `obscuringCharacter` argument will be obscuringCharacter text field form of alert dialog.\
+/// The `showPasswordIcon` visible for show password icon. default is false.\
+/// The `barrierDismissible` argument will be barrierDismissible showDialog form of alert dialog.\
 /// The `textCapitalization` argument will be textCapitalization text field form of alert dialog.
 ///
 /// Returns a [Future<String?>].
@@ -35,13 +37,14 @@ Future<String?> prompt(
   bool barrierDismissible = false,
   TextCapitalization textCapitalization = TextCapitalization.none,
 }) {
+  final TextEditingController controller =
+      TextEditingController(text: initialValue);
   String? value = initialValue;
-  TextEditingController controller = TextEditingController(text: initialValue);
   int keyCtr = 0;
   return showDialog(
     barrierDismissible: barrierDismissible,
     context: context,
-    builder: (context) {
+    builder: (BuildContext context) {
       return StatefulBuilder(
         builder: (BuildContext context, StateSetter setState) {
           return WillPopScope(
@@ -52,31 +55,37 @@ Future<String?> prompt(
             child: AlertDialog(
               title: title,
               content: TextFormField(
-                key: Key('1_' + keyCtr.toString()),
+                key: Key('1_${keyCtr.toString()}'),
                 controller: controller,
-                decoration: InputDecoration(hintText: hintText,
+                decoration: InputDecoration(
+                  hintText: hintText,
                   suffixIcon: showPasswordIcon
-                      ? IconButton(icon: Icon(
-                    Icons.remove_red_eye,
-                    color: obscureText ? Colors.grey : Colors.blueGrey,
-                  ),
-                    onPressed: () {
-                      obscureText = !obscureText;
-                      keyCtr++;
-                      setState(() {
-                        controller.selection = TextSelection.fromPosition(TextPosition(offset: 0));
-                        controller.selection = TextSelection.fromPosition(TextPosition(offset: controller.text.length));
-                      });
-                    },
-                  ) : null,
+                      ? IconButton(
+                          icon: Icon(
+                            Icons.remove_red_eye,
+                            color: obscureText ? Colors.grey : Colors.blueGrey,
+                          ),
+                          onPressed: () {
+                            obscureText = !obscureText;
+                            keyCtr++;
+                            setState(() {
+                              controller.selection = TextSelection.fromPosition(
+                                const TextPosition(offset: 0),
+                              );
+                              controller.selection = TextSelection.fromPosition(
+                                TextPosition(offset: controller.text.length),
+                              );
+                            });
+                          },
+                        )
+                      : null,
                 ),
                 minLines: minLines,
                 maxLines: maxLines,
                 autofocus: autoFocus,
                 keyboardType: keyboardType,
                 textInputAction: textInputAction,
-                // initialValue: initialValue, already in TextEditingController
-                onChanged: (text) => value = text,
+                onChanged: (String text) => value = text,
                 obscureText: obscureText,
                 obscuringCharacter: obscuringCharacter,
                 textCapitalization: textCapitalization,
@@ -85,7 +94,8 @@ Future<String?> prompt(
               actions: <Widget>[
                 TextButton(
                   onPressed: () => Navigator.pop(context, null),
-                  child: (textCancel != null) ? textCancel : const Text('Cancel'),
+                  child:
+                      (textCancel != null) ? textCancel : const Text('Cancel'),
                 ),
                 TextButton(
                   onPressed: () => Navigator.pop(context, value),
