@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 /// The `textCancel` argument is used to text for 'Cancel' Button of alert dialog.\
 /// The `initialValue` argument is used to initial value of alert dialog.\
 /// The `hintText` argument will be hintText text field form of alert dialog.\
+/// The `validator` argument will be validator text field form of alert dialog.\
 /// The `minLines` argument will be minLines text field form of alert dialog.\
 /// The `maxLines` argument will be maxLines text field form of alert dialog.\
 /// The `autoFocus` argument will be autoFocus text field form of alert dialog.\
@@ -26,6 +27,7 @@ Future<String?> prompt(
   Widget? textCancel,
   String? initialValue,
   String? hintText,
+  String? Function(String?)? validator,
   int minLines = 1,
   int maxLines = 1,
   bool autoFocus = true,
@@ -80,6 +82,7 @@ Future<String?> prompt(
                         )
                       : null,
                 ),
+                validator: validator,
                 minLines: minLines,
                 maxLines: maxLines,
                 autofocus: autoFocus,

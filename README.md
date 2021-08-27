@@ -10,7 +10,7 @@ https://pub.dev/packages/prompt_dialog
 ### Add pubspec.yaml
 ``` yaml
 dependencies:
-  prompt_dialog: ^1.0.4
+  prompt_dialog: ^1.0.5
 ```
 ---
 ## Usage
@@ -74,6 +74,12 @@ class MyApp extends StatelessWidget {
                 textOK: Text('Yes'),
                 textCancel: Text('No'),
                 hintText: 'Please write reason',
+                validator: (String? value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Please enter some text';
+                  }
+                  return null;
+                },
                 minLines: 1,
                 maxLines: 3,
                 autoFocus: true,

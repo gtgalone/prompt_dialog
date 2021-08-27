@@ -25,6 +25,12 @@ class MyApp extends StatelessWidget {
                 textOK: const Text('Yes'),
                 textCancel: const Text('No'),
                 hintText: 'Please write reason',
+                validator: (String? value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Please enter some text';
+                  }
+                  return null;
+                },
                 minLines: 2,
                 maxLines: 3,
                 autoFocus: false,

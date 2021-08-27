@@ -52,3 +52,8 @@
   * Add barrierDismissible.
   * Simpler fix for returning initialValue if no changes.
   * Huge Thanks! @FRFGCCEVCV
+
+# 1.0.5
+
+  * Add validator property.(#10)
+  * Huge Thanks! @cmorsucci
