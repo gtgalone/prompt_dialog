@@ -22,6 +22,7 @@ class MyApp extends StatelessWidget {
                 context,
                 title: const Text('Would you like to remove?'),
                 initialValue: 'Sure',
+                isSelectedInitialValue: false,
                 textOK: const Text('Yes'),
                 textCancel: const Text('No'),
                 hintText: 'Please write reason',

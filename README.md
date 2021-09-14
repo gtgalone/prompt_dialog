@@ -10,7 +10,7 @@ https://pub.dev/packages/prompt_dialog
 ### Add pubspec.yaml
 ``` yaml
 dependencies:
-  prompt_dialog: ^1.0.5
+  prompt_dialog: ^1.0.6
 ```
 ---
 ## Usage
@@ -71,6 +71,7 @@ class MyApp extends StatelessWidget {
                 context,
                 title: Text('Would you like to remove?'),
                 initialValue: 'Sure',
+                isSelectedInitialValue: false,
                 textOK: Text('Yes'),
                 textCancel: Text('No'),
                 hintText: 'Please write reason',

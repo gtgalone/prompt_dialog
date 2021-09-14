@@ -5,7 +5,8 @@ import 'package:flutter/material.dart';
 /// The `title` argument is used to title of alert dialog.\
 /// The `textOK` argument is used to text for 'OK' Button of alert dialog.\
 /// The `textCancel` argument is used to text for 'Cancel' Button of alert dialog.\
-/// The `initialValue` argument is used to initial value of alert dialog.\
+/// The `initialValue` argument is used to an initial value of alert dialog.\
+/// The `isSelectedInitialValue` argument is used to select an initial value of alert dialog.\
 /// The `hintText` argument will be hintText text field form of alert dialog.\
 /// The `validator` argument will be validator text field form of alert dialog.\
 /// The `minLines` argument will be minLines text field form of alert dialog.\
@@ -26,6 +27,7 @@ Future<String?> prompt(
   Widget? textOK,
   Widget? textCancel,
   String? initialValue,
+  bool isSelectedInitialValue = true,
   String? hintText,
   String? Function(String?)? validator,
   int minLines = 1,
@@ -43,6 +45,14 @@ Future<String?> prompt(
       TextEditingController(text: initialValue);
   String? value = initialValue;
   int keyCtr = 0;
+
+  if (isSelectedInitialValue && (initialValue != null)) {
+    controller.selection = TextSelection(
+      baseOffset: 0,
+      extentOffset: initialValue.length,
+    );
+  }
+
   return showDialog(
     barrierDismissible: barrierDismissible,
     context: context,
