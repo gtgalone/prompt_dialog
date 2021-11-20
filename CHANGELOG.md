@@ -62,3 +62,8 @@
 
   * Add isSelectedInitialValue property.(#11)
   * Huge Thanks! @hippyau
+
+# 1.0.7
+
+  * Fix the validator issue.(#12)
+  * Huge Thanks! @dakamojo 
