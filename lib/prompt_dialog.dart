@@ -41,84 +41,157 @@ Future<String?> prompt(
   bool barrierDismissible = false,
   TextCapitalization textCapitalization = TextCapitalization.none,
 }) {
-  final TextEditingController controller =
-      TextEditingController(text: initialValue);
-  String? value = initialValue;
-  int keyCtr = 0;
-
-  if (isSelectedInitialValue && (initialValue != null)) {
-    controller.selection = TextSelection(
-      baseOffset: 0,
-      extentOffset: initialValue.length,
-    );
-  }
-
   return showDialog(
-    barrierDismissible: barrierDismissible,
     context: context,
+    barrierDismissible: barrierDismissible,
     builder: (BuildContext context) {
-      return StatefulBuilder(
-        builder: (BuildContext context, StateSetter setState) {
-          return WillPopScope(
-            onWillPop: () async {
-              Navigator.pop(context, null);
-              return true;
-            },
-            child: AlertDialog(
-              title: title,
-              content: TextFormField(
-                key: Key('1_${keyCtr.toString()}'),
-                controller: controller,
-                decoration: InputDecoration(
-                  hintText: hintText,
-                  suffixIcon: showPasswordIcon
-                      ? IconButton(
-                          icon: Icon(
-                            Icons.remove_red_eye,
-                            color: obscureText ? Colors.grey : Colors.blueGrey,
-                          ),
-                          onPressed: () {
-                            obscureText = !obscureText;
-                            keyCtr++;
-                            setState(() {
-                              controller.selection = TextSelection.fromPosition(
-                                const TextPosition(offset: 0),
-                              );
-                              controller.selection = TextSelection.fromPosition(
-                                TextPosition(offset: controller.text.length),
-                              );
-                            });
-                          },
-                        )
-                      : null,
-                ),
-                validator: validator,
-                minLines: minLines,
-                maxLines: maxLines,
-                autofocus: autoFocus,
-                keyboardType: keyboardType,
-                textInputAction: textInputAction,
-                onChanged: (String text) => value = text,
-                obscureText: obscureText,
-                obscuringCharacter: obscuringCharacter,
-                textCapitalization: textCapitalization,
-                onEditingComplete: () => Navigator.pop(context, value),
-              ),
-              actions: <Widget>[
-                TextButton(
-                  onPressed: () => Navigator.pop(context, null),
-                  child:
-                      (textCancel != null) ? textCancel : const Text('Cancel'),
-                ),
-                TextButton(
-                  onPressed: () => Navigator.pop(context, value),
-                  child: (textOK != null) ? textOK : const Text('OK'),
-                ),
-              ],
-            ),
-          );
-        },
-      );
+      return __PromptDialog(
+          title: title,
+          textOK: textOK,
+          textCancel: textCancel,
+          initialValue: initialValue,
+          isSelectedInitialValue: isSelectedInitialValue,
+          hintText: hintText,
+          validator: validator,
+          minLines: minLines,
+          maxLines: maxLines,
+          autoFocus: autoFocus,
+          keyboardType: keyboardType,
+          textInputAction: textInputAction,
+          obscureText: obscureText,
+          obscuringCharacter: obscuringCharacter,
+          showPasswordIcon: showPasswordIcon,
+          textCapitalization: textCapitalization);
     },
   );
+}
+
+class __PromptDialog extends StatefulWidget {
+  const __PromptDialog(
+      {Key? key,
+      this.title,
+      this.textOK,
+      this.textCancel,
+      this.initialValue,
+      this.isSelectedInitialValue = true,
+      this.hintText,
+      this.validator,
+      this.minLines = 1,
+      this.maxLines = 1,
+      this.autoFocus = true,
+      this.keyboardType,
+      this.textInputAction,
+      this.obscureText = false,
+      this.obscuringCharacter = '*',
+      this.showPasswordIcon = false,
+      this.textCapitalization = TextCapitalization.none})
+      : super(key: key);
+
+  final Widget? title;
+  final Widget? textOK;
+  final Widget? textCancel;
+  final String? initialValue;
+  final bool isSelectedInitialValue;
+  final String? hintText;
+  final String? Function(String?)? validator;
+  final int minLines;
+  final int maxLines;
+  final bool autoFocus;
+  final TextInputType? keyboardType;
+  final TextInputAction? textInputAction;
+  final bool obscureText;
+  final String obscuringCharacter;
+  final bool showPasswordIcon;
+  final TextCapitalization textCapitalization;
+
+  @override
+  ___PromptDialogState createState() => ___PromptDialogState();
+}
+
+class ___PromptDialogState extends State<__PromptDialog> {
+  late TextEditingController controller;
+  late bool stateObscureText = widget.obscureText;
+
+  String? value;
+
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
+  @override
+  void initState() {
+    super.initState();
+    controller = TextEditingController(text: widget.initialValue);
+    value = widget.initialValue;
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return WillPopScope(
+      onWillPop: () async {
+        Navigator.pop(context, null);
+        return true;
+      },
+      child: AlertDialog(
+        title: widget.title,
+        content: Form(
+          key: _formKey,
+          child: TextFormField(
+            controller: controller,
+            decoration: InputDecoration(
+              hintText: widget.hintText,
+              suffixIcon: widget.showPasswordIcon
+                  ? IconButton(
+                      icon: Icon(
+                        Icons.remove_red_eye,
+                        color: stateObscureText ? Colors.grey : Colors.blueGrey,
+                      ),
+                      onPressed: () {
+                        stateObscureText = !stateObscureText;
+                        setState(() {
+                          controller.selection = TextSelection.fromPosition(
+                            const TextPosition(offset: 0),
+                          );
+                          controller.selection = TextSelection.fromPosition(
+                            TextPosition(offset: controller.text.length),
+                          );
+                        });
+                      },
+                    )
+                  : null,
+            ),
+            validator: widget.validator,
+            minLines: widget.minLines,
+            maxLines: widget.maxLines,
+            autofocus: widget.autoFocus,
+            keyboardType: widget.keyboardType,
+            textInputAction: widget.textInputAction,
+            onChanged: (String text) => value = text,
+            obscureText: stateObscureText,
+            obscuringCharacter: widget.obscuringCharacter,
+            textCapitalization: widget.textCapitalization,
+            onEditingComplete: () {
+              if (_formKey.currentState!.validate()) {
+                Navigator.pop(context, value);
+              }
+            },
+          ),
+        ),
+        actions: <Widget>[
+          TextButton(
+            onPressed: () => Navigator.pop(context, null),
+            child: (widget.textCancel != null)
+                ? widget.textCancel!
+                : const Text('Cancel'),
+          ),
+          TextButton(
+            onPressed: () {
+              if (_formKey.currentState!.validate()) {
+                Navigator.pop(context, value);
+              }
+            },
+            child: (widget.textOK != null) ? widget.textOK! : const Text('OK'),
+          ),
+        ],
+      ),
+    );
+  }
 }
