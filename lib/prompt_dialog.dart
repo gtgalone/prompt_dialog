@@ -45,47 +45,48 @@ Future<String?> prompt(
     context: context,
     barrierDismissible: barrierDismissible,
     builder: (BuildContext context) {
-      return __PromptDialog(
-          title: title,
-          textOK: textOK,
-          textCancel: textCancel,
-          initialValue: initialValue,
-          isSelectedInitialValue: isSelectedInitialValue,
-          hintText: hintText,
-          validator: validator,
-          minLines: minLines,
-          maxLines: maxLines,
-          autoFocus: autoFocus,
-          keyboardType: keyboardType,
-          textInputAction: textInputAction,
-          obscureText: obscureText,
-          obscuringCharacter: obscuringCharacter,
-          showPasswordIcon: showPasswordIcon,
-          textCapitalization: textCapitalization);
+      return _PromptDialog(
+        title: title,
+        textOK: textOK,
+        textCancel: textCancel,
+        initialValue: initialValue,
+        isSelectedInitialValue: isSelectedInitialValue,
+        hintText: hintText,
+        validator: validator,
+        minLines: minLines,
+        maxLines: maxLines,
+        autoFocus: autoFocus,
+        keyboardType: keyboardType,
+        textInputAction: textInputAction,
+        obscureText: obscureText,
+        obscuringCharacter: obscuringCharacter,
+        showPasswordIcon: showPasswordIcon,
+        textCapitalization: textCapitalization,
+      );
     },
   );
 }
 
-class __PromptDialog extends StatefulWidget {
-  const __PromptDialog(
-      {Key? key,
-      this.title,
-      this.textOK,
-      this.textCancel,
-      this.initialValue,
-      this.isSelectedInitialValue = true,
-      this.hintText,
-      this.validator,
-      this.minLines = 1,
-      this.maxLines = 1,
-      this.autoFocus = true,
-      this.keyboardType,
-      this.textInputAction,
-      this.obscureText = false,
-      this.obscuringCharacter = '*',
-      this.showPasswordIcon = false,
-      this.textCapitalization = TextCapitalization.none})
-      : super(key: key);
+class _PromptDialog extends StatefulWidget {
+  const _PromptDialog({
+    Key? key,
+    this.title,
+    this.textOK,
+    this.textCancel,
+    this.initialValue,
+    this.isSelectedInitialValue = true,
+    this.hintText,
+    this.validator,
+    this.minLines = 1,
+    this.maxLines = 1,
+    this.autoFocus = true,
+    this.keyboardType,
+    this.textInputAction,
+    this.obscureText = false,
+    this.obscuringCharacter = '*',
+    this.showPasswordIcon = false,
+    this.textCapitalization = TextCapitalization.none,
+  }) : super(key: key);
 
   final Widget? title;
   final Widget? textOK;
@@ -105,10 +106,10 @@ class __PromptDialog extends StatefulWidget {
   final TextCapitalization textCapitalization;
 
   @override
-  ___PromptDialogState createState() => ___PromptDialogState();
+  __PromptDialogState createState() => __PromptDialogState();
 }
 
-class ___PromptDialogState extends State<__PromptDialog> {
+class __PromptDialogState extends State<_PromptDialog> {
   late TextEditingController controller;
   late bool stateObscureText = widget.obscureText;
 

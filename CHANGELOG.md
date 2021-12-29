@@ -67,3 +67,8 @@
 
   * Fix the validator issue.(#12)
   * Huge Thanks! @dakamojo 
+
+# 1.0.8
+
+  * Update example usage.(#14)
+  * Huge Thanks! @mjablecnik
