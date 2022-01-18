@@ -19,6 +19,7 @@ import 'package:flutter/material.dart';
 /// The `showPasswordIcon` visible for show password icon. default is false.\
 /// The `barrierDismissible` argument will be barrierDismissible showDialog form of alert dialog.\
 /// The `textCapitalization` argument will be textCapitalization text field form of alert dialog.
+/// The `textAlign` argument will be textAlign text field form of alert dialog.
 ///
 /// Returns a [Future<String?>].
 Future<String?> prompt(
@@ -40,6 +41,7 @@ Future<String?> prompt(
   bool showPasswordIcon = false,
   bool barrierDismissible = false,
   TextCapitalization textCapitalization = TextCapitalization.none,
+  TextAlign textAlign = TextAlign.start,
 }) {
   return showDialog(
     context: context,
@@ -62,6 +64,7 @@ Future<String?> prompt(
         obscuringCharacter: obscuringCharacter,
         showPasswordIcon: showPasswordIcon,
         textCapitalization: textCapitalization,
+        textAlign: textAlign,
       );
     },
   );
@@ -74,18 +77,19 @@ class _PromptDialog extends StatefulWidget {
     this.textOK,
     this.textCancel,
     this.initialValue,
-    this.isSelectedInitialValue = true,
+    required this.isSelectedInitialValue,
     this.hintText,
     this.validator,
-    this.minLines = 1,
-    this.maxLines = 1,
-    this.autoFocus = true,
+    required this.minLines,
+    required this.maxLines,
+    required this.autoFocus,
     this.keyboardType,
     this.textInputAction,
-    this.obscureText = false,
-    this.obscuringCharacter = '*',
-    this.showPasswordIcon = false,
-    this.textCapitalization = TextCapitalization.none,
+    required this.obscureText,
+    required this.obscuringCharacter,
+    required this.showPasswordIcon,
+    required this.textCapitalization,
+    required this.textAlign,
   }) : super(key: key);
 
   final Widget? title;
@@ -104,6 +108,7 @@ class _PromptDialog extends StatefulWidget {
   final String obscuringCharacter;
   final bool showPasswordIcon;
   final TextCapitalization textCapitalization;
+  final TextAlign textAlign;
 
   @override
   __PromptDialogState createState() => __PromptDialogState();
@@ -174,6 +179,7 @@ class __PromptDialogState extends State<_PromptDialog> {
                 Navigator.pop(context, value);
               }
             },
+            textAlign: widget.textAlign,
           ),
         ),
         actions: <Widget>[

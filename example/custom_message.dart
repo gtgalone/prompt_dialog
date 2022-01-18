@@ -63,6 +63,7 @@ class _MyHomePageState extends State<MyHomePage> {
               showPasswordIcon: true,
               barrierDismissible: true,
               textCapitalization: TextCapitalization.words,
+              textAlign: TextAlign.center,
             ));
           },
         ),

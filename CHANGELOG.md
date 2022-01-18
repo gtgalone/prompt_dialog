@@ -16,19 +16,19 @@
 
 # 0.1.1
 
-  * Add hintText, maxLines and minLines properties.
+  * Add `hintText`, `maxLines` and `minLines` properties.
 
 # 0.1.2
 
-  * Add obscureText and obscuringCharacter properties. Huge Thanks! @tpillow
+  * Add `obscureText` and `obscuringCharacter` properties. Huge Thanks! @tpillow
 
 # 0.1.3
 
-  * Add textCapitalization property. Huge Thanks! @joachimvalente
+  * Add `textCapitalization` property. Huge Thanks! @joachimvalente
 
 # 0.1.4
 
-  * Add keyboardType, textInputAction property.
+  * Add `keyboardType`, `textInputAction` property.
 
 # 1.0.0
 
@@ -40,7 +40,7 @@
 
 # 1.0.2
 
-  * Add onEditingComplete property.(#6)
+  * Add `onEditingComplete` property.(#6)
 
 # 1.0.3
 
@@ -48,19 +48,18 @@
 
 # 1.0.4
 
-  * Add showPasswordIcon.
-  * Add barrierDismissible.
+  * Add `showPasswordIcon`, `barrierDismissible` properties.
   * Simpler fix for returning initialValue if no changes.
   * Huge Thanks! @FRFGCCEVCV
 
 # 1.0.5
 
-  * Add validator property.(#10)
+  * Add `validator` property.(#10)
   * Huge Thanks! @cmorsucci
 
 # 1.0.6
 
-  * Add isSelectedInitialValue property.(#11)
+  * Add `isSelectedInitialValue` property.(#11)
   * Huge Thanks! @hippyau
 
 # 1.0.7
@@ -72,3 +71,8 @@
 
   * Update example usage.(#14)
   * Huge Thanks! @mjablecnik
+
+# 1.0.9
+
+  * Add `textAlign` property.(#16)
+  * Huge Thanks! @FelipeSamuel

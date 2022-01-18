@@ -10,7 +10,7 @@ https://pub.dev/packages/prompt_dialog
 ### Add pubspec.yaml
 ``` yaml
 dependencies:
-  prompt_dialog: ^1.0.8
+  prompt_dialog: ^1.0.9
 ```
 ---
 ## Usage
@@ -136,6 +136,7 @@ class _MyHomePageState extends State<MyHomePage> {
               showPasswordIcon: true,
               barrierDismissible: true,
               textCapitalization: TextCapitalization.words,
+              textAlign: TextAlign.center,
             ));
           },
         ),
