@@ -65,7 +65,7 @@
 # 1.0.7
 
   * Fix the validator issue.(#12)
-  * Huge Thanks! @dakamojo 
+  * Huge Thanks! @dakamojo
 
 # 1.0.8
 
@@ -76,3 +76,8 @@
 
   * Add `textAlign` property.(#16)
   * Huge Thanks! @FelipeSamuel
+
+# 1.0.10
+
+  * Add `controller` property.(#19)
+  * Huge Thanks! @mitrakov

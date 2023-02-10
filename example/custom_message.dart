@@ -41,10 +41,12 @@ class _MyHomePageState extends State<MyHomePage> {
         child: ElevatedButton(
           child: const Text('Prompt Dialog'),
           onPressed: () async {
+            const String initialValue = 'Sure';
+
             return print(await prompt(
               context,
               title: const Text('Would you like to remove?'),
-              initialValue: 'Sure',
+              initialValue: initialValue,
               isSelectedInitialValue: false,
               textOK: const Text('Yes'),
               textCancel: const Text('No'),
@@ -64,6 +66,7 @@ class _MyHomePageState extends State<MyHomePage> {
               barrierDismissible: true,
               textCapitalization: TextCapitalization.words,
               textAlign: TextAlign.center,
+              controller: TextEditingController(text: initialValue),
             ));
           },
         ),

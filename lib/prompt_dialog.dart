@@ -7,19 +7,20 @@ import 'package:flutter/material.dart';
 /// The `textCancel` argument is used to text for 'Cancel' Button of alert dialog.\
 /// The `initialValue` argument is used to an initial value of alert dialog.\
 /// The `isSelectedInitialValue` argument is used to select an initial value of alert dialog.\
-/// The `hintText` argument will be hintText text field form of alert dialog.\
-/// The `validator` argument will be validator text field form of alert dialog.\
-/// The `minLines` argument will be minLines text field form of alert dialog.\
-/// The `maxLines` argument will be maxLines text field form of alert dialog.\
-/// The `autoFocus` argument will be autoFocus text field form of alert dialog.\
-/// The `keyboardType` argument will be keyboardType text field form of alert dialog.\
-/// The `textInputAction` argument will be textInputAction text field form of alert dialog.\
-/// The `obscureText` argument will be obscureText text field form of alert dialog.\
-/// The `obscuringCharacter` argument will be obscuringCharacter text field form of alert dialog.\
+/// The `hintText` argument will be hintText in TextFormField of alert dialog.\
+/// The `validator` argument will be validator in TextFormField of alert dialog.\
+/// The `minLines` argument will be minLines in TextFormField of alert dialog.\
+/// The `maxLines` argument will be maxLines in TextFormField of alert dialog.\
+/// The `autoFocus` argument will be autoFocus in TextFormField of alert dialog.\
+/// The `keyboardType` argument will be keyboardType in TextFormField of alert dialog.\
+/// The `textInputAction` argument will be textInputAction in TextFormField of alert dialog.\
+/// The `obscureText` argument will be obscureText in TextFormField of alert dialog.\
+/// The `obscuringCharacter` argument will be obscuringCharacter in TextFormField of alert dialog.\
 /// The `showPasswordIcon` visible for show password icon. default is false.\
 /// The `barrierDismissible` argument will be barrierDismissible showDialog form of alert dialog.\
-/// The `textCapitalization` argument will be textCapitalization text field form of alert dialog.
-/// The `textAlign` argument will be textAlign text field form of alert dialog.
+/// The `textCapitalization` argument will be textCapitalization in TextFormField of alert dialog.
+/// The `textAlign` argument will be textAlign in TextFormField of alert dialog.
+/// The `controller` argument will be controller in TextFormField of alert dialog.
 ///
 /// Returns a [Future<String?>].
 Future<String?> prompt(
@@ -42,6 +43,7 @@ Future<String?> prompt(
   bool barrierDismissible = false,
   TextCapitalization textCapitalization = TextCapitalization.none,
   TextAlign textAlign = TextAlign.start,
+  TextEditingController? controller,
 }) {
   return showDialog(
     context: context,
@@ -65,6 +67,7 @@ Future<String?> prompt(
         showPasswordIcon: showPasswordIcon,
         textCapitalization: textCapitalization,
         textAlign: textAlign,
+        controller: controller,
       );
     },
   );
@@ -90,6 +93,7 @@ class _PromptDialog extends StatefulWidget {
     required this.showPasswordIcon,
     required this.textCapitalization,
     required this.textAlign,
+    this.controller,
   }) : super(key: key);
 
   final Widget? title;
@@ -109,6 +113,7 @@ class _PromptDialog extends StatefulWidget {
   final bool showPasswordIcon;
   final TextCapitalization textCapitalization;
   final TextAlign textAlign;
+  final TextEditingController? controller;
 
   @override
   __PromptDialogState createState() => __PromptDialogState();
@@ -125,7 +130,8 @@ class __PromptDialogState extends State<_PromptDialog> {
   @override
   void initState() {
     super.initState();
-    controller = TextEditingController(text: widget.initialValue);
+    controller =
+        widget.controller ?? TextEditingController(text: widget.initialValue);
     value = widget.initialValue;
   }
 
