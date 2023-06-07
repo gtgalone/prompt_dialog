@@ -44,6 +44,7 @@ Future<String?> prompt(
   TextCapitalization textCapitalization = TextCapitalization.none,
   TextAlign textAlign = TextAlign.start,
   TextEditingController? controller,
+  InputDecoration? decoration,
 }) {
   return showDialog(
     context: context,
@@ -68,6 +69,7 @@ Future<String?> prompt(
         textCapitalization: textCapitalization,
         textAlign: textAlign,
         controller: controller,
+        decoration: decoration ?? const InputDecoration(),
       );
     },
   );
@@ -94,6 +96,7 @@ class _PromptDialog extends StatefulWidget {
     required this.textCapitalization,
     required this.textAlign,
     this.controller,
+    required this.decoration,
   }) : super(key: key);
 
   final Widget? title;
@@ -114,6 +117,7 @@ class _PromptDialog extends StatefulWidget {
   final TextCapitalization textCapitalization;
   final TextAlign textAlign;
   final TextEditingController? controller;
+  final InputDecoration decoration;
 
   @override
   __PromptDialogState createState() => __PromptDialogState();
@@ -148,7 +152,7 @@ class __PromptDialogState extends State<_PromptDialog> {
           key: _formKey,
           child: TextFormField(
             controller: controller,
-            decoration: InputDecoration(
+            decoration: widget.decoration.copyWith(
               hintText: widget.hintText,
               suffixIcon: widget.showPasswordIcon
                   ? IconButton(
