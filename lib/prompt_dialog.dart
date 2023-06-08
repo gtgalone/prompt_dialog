@@ -21,6 +21,7 @@ import 'package:flutter/material.dart';
 /// The `textCapitalization` argument will be textCapitalization in TextFormField of alert dialog.
 /// The `textAlign` argument will be textAlign in TextFormField of alert dialog.
 /// The `controller` argument will be controller in TextFormField of alert dialog.
+/// The `decoration` argument will allow modification of the text field decoration. The `hintText` and `suffixIcon` fields will be overridden.
 ///
 /// Returns a [Future<String?>].
 Future<String?> prompt(
