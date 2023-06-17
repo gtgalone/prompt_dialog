@@ -81,3 +81,8 @@
 
   * Add `controller` property.(#19)
   * Huge Thanks! @mitrakov
+
+# 1.0.11
+
+  * Add `decoration` property.(#20)
+  * Huge Thanks! @ArkinSolomon
