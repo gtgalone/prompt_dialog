@@ -86,3 +86,7 @@
 
   * Add `decoration` property.(#20)
   * Huge Thanks! @ArkinSolomon
+
+# 1.0.12
+
+  * Make dialog to scrollable.
