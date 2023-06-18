@@ -149,48 +149,51 @@ class __PromptDialogState extends State<_PromptDialog> {
       },
       child: AlertDialog(
         title: widget.title,
-        content: Form(
-          key: _formKey,
-          child: TextFormField(
-            controller: controller,
-            decoration: widget.decoration.copyWith(
-              hintText: widget.hintText,
-              suffixIcon: widget.showPasswordIcon
-                  ? IconButton(
-                      icon: Icon(
-                        Icons.remove_red_eye,
-                        color: stateObscureText ? Colors.grey : Colors.blueGrey,
-                      ),
-                      onPressed: () {
-                        stateObscureText = !stateObscureText;
-                        setState(() {
-                          controller.selection = TextSelection.fromPosition(
-                            const TextPosition(offset: 0),
-                          );
-                          controller.selection = TextSelection.fromPosition(
-                            TextPosition(offset: controller.text.length),
-                          );
-                        });
-                      },
-                    )
-                  : null,
+        content: SingleChildScrollView(
+          child: Form(
+            key: _formKey,
+            child: TextFormField(
+              controller: controller,
+              decoration: widget.decoration.copyWith(
+                hintText: widget.hintText,
+                suffixIcon: widget.showPasswordIcon
+                    ? IconButton(
+                        icon: Icon(
+                          Icons.remove_red_eye,
+                          color:
+                              stateObscureText ? Colors.grey : Colors.blueGrey,
+                        ),
+                        onPressed: () {
+                          stateObscureText = !stateObscureText;
+                          setState(() {
+                            controller.selection = TextSelection.fromPosition(
+                              const TextPosition(offset: 0),
+                            );
+                            controller.selection = TextSelection.fromPosition(
+                              TextPosition(offset: controller.text.length),
+                            );
+                          });
+                        },
+                      )
+                    : null,
+              ),
+              validator: widget.validator,
+              minLines: widget.minLines,
+              maxLines: widget.maxLines,
+              autofocus: widget.autoFocus,
+              keyboardType: widget.keyboardType,
+              textInputAction: widget.textInputAction,
+              onChanged: (String text) => value = text,
+              obscureText: stateObscureText,
+              obscuringCharacter: widget.obscuringCharacter,
+              textCapitalization: widget.textCapitalization,
+              onEditingComplete: () {
+                if (_formKey.currentState!.validate()) {
+                  Navigator.pop(context, value);
+                }
+              },
+              textAlign: widget.textAlign,
             ),
-            validator: widget.validator,
-            minLines: widget.minLines,
-            maxLines: widget.maxLines,
-            autofocus: widget.autoFocus,
-            keyboardType: widget.keyboardType,
-            textInputAction: widget.textInputAction,
-            onChanged: (String text) => value = text,
-            obscureText: stateObscureText,
-            obscuringCharacter: widget.obscuringCharacter,
-            textCapitalization: widget.textCapitalization,
-            onEditingComplete: () {
-              if (_formKey.currentState!.validate()) {
-                Navigator.pop(context, value);
-              }
-            },
-            textAlign: widget.textAlign,
           ),
         ),
         actions: <Widget>[
@@ -198,7 +201,7 @@ class __PromptDialogState extends State<_PromptDialog> {
             onPressed: () => Navigator.pop(context, null),
             child: (widget.textCancel != null)
                 ? widget.textCancel!
-                : const Text('Cancel'),
+                : Text(MaterialLocalizations.of(context).cancelButtonLabel),
           ),
           TextButton(
             onPressed: () {
@@ -206,7 +209,9 @@ class __PromptDialogState extends State<_PromptDialog> {
                 Navigator.pop(context, value);
               }
             },
-            child: (widget.textOK != null) ? widget.textOK! : const Text('OK'),
+            child: (widget.textOK != null)
+                ? widget.textOK!
+                : Text(MaterialLocalizations.of(context).okButtonLabel),
           ),
         ],
       ),
