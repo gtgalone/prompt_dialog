@@ -90,3 +90,7 @@
 # 1.0.12
 
   * Make dialog to scrollable.
+
+# 1.0.13
+
+  * Add all padding parameters.

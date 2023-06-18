@@ -46,6 +46,12 @@ Future<String?> prompt(
   TextAlign textAlign = TextAlign.start,
   TextEditingController? controller,
   InputDecoration? decoration,
+  EdgeInsets? insetPadding,
+  EdgeInsets? contentPadding,
+  EdgeInsets? actionsPadding,
+  EdgeInsets? titlePadding,
+  EdgeInsets? buttonPadding,
+  EdgeInsets? iconPadding,
 }) {
   return showDialog(
     context: context,
@@ -71,6 +77,12 @@ Future<String?> prompt(
         textAlign: textAlign,
         controller: controller,
         decoration: decoration ?? const InputDecoration(),
+        insetPadding: insetPadding ?? EdgeInsets.zero,
+        contentPadding: contentPadding,
+        actionsPadding: actionsPadding,
+        titlePadding: titlePadding,
+        buttonPadding: buttonPadding,
+        iconPadding: iconPadding,
       );
     },
   );
@@ -78,27 +90,32 @@ Future<String?> prompt(
 
 class _PromptDialog extends StatefulWidget {
   const _PromptDialog({
-    Key? key,
-    this.title,
-    this.textOK,
-    this.textCancel,
-    this.initialValue,
     required this.isSelectedInitialValue,
-    this.hintText,
-    this.validator,
     required this.minLines,
     required this.maxLines,
     required this.autoFocus,
-    this.keyboardType,
-    this.textInputAction,
     required this.obscureText,
     required this.obscuringCharacter,
     required this.showPasswordIcon,
     required this.textCapitalization,
     required this.textAlign,
-    this.controller,
     required this.decoration,
-  }) : super(key: key);
+    required this.insetPadding,
+    this.title,
+    this.textOK,
+    this.textCancel,
+    this.initialValue,
+    this.hintText,
+    this.validator,
+    this.keyboardType,
+    this.textInputAction,
+    this.controller,
+    this.contentPadding,
+    this.actionsPadding,
+    this.titlePadding,
+    this.buttonPadding,
+    this.iconPadding,
+  });
 
   final Widget? title;
   final Widget? textOK;
@@ -119,6 +136,12 @@ class _PromptDialog extends StatefulWidget {
   final TextAlign textAlign;
   final TextEditingController? controller;
   final InputDecoration decoration;
+  final EdgeInsets insetPadding;
+  final EdgeInsets? contentPadding;
+  final EdgeInsets? actionsPadding;
+  final EdgeInsets? titlePadding;
+  final EdgeInsets? buttonPadding;
+  final EdgeInsets? iconPadding;
 
   @override
   __PromptDialogState createState() => __PromptDialogState();
@@ -148,6 +171,12 @@ class __PromptDialogState extends State<_PromptDialog> {
         return true;
       },
       child: AlertDialog(
+        insetPadding: widget.insetPadding,
+        contentPadding: widget.contentPadding,
+        actionsPadding: widget.actionsPadding,
+        titlePadding: widget.titlePadding,
+        buttonPadding: widget.buttonPadding,
+        iconPadding: widget.iconPadding,
         title: widget.title,
         content: SingleChildScrollView(
           child: Form(
