@@ -94,3 +94,7 @@
 # 1.0.13
 
   * Add all padding parameters.
+
+# 1.0.14
+
+  * Replace WillPopScope to PopScope.

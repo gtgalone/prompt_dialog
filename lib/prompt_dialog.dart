@@ -18,10 +18,12 @@ import 'package:flutter/material.dart';
 /// The `obscuringCharacter` argument will be obscuringCharacter in TextFormField of alert dialog.\
 /// The `showPasswordIcon` visible for show password icon. default is false.\
 /// The `barrierDismissible` argument will be barrierDismissible showDialog form of alert dialog.\
-/// The `textCapitalization` argument will be textCapitalization in TextFormField of alert dialog.
-/// The `textAlign` argument will be textAlign in TextFormField of alert dialog.
-/// The `controller` argument will be controller in TextFormField of alert dialog.
-/// The `decoration` argument will allow modification of the text field decoration. The `hintText` and `suffixIcon` fields will be overridden.
+/// The `textCapitalization` argument will be textCapitalization in TextFormField of alert dialog.\
+/// The `textAlign` argument will be textAlign in TextFormField of alert dialog.\
+/// The `controller` argument will be controller in TextFormField of alert dialog.\
+/// The `decoration` argument will allow modification of the text field decoration. The `hintText` and `suffixIcon` fields will be overridden.\
+/// The `canPop` argument is `canPop` of PopScope.\
+/// The `onPopInvoked` argument is `onPopInvoked` of PopScope.
 ///
 /// Returns a [Future<String?>].
 Future<String?> prompt(
@@ -52,6 +54,8 @@ Future<String?> prompt(
   EdgeInsets? titlePadding,
   EdgeInsets? buttonPadding,
   EdgeInsets? iconPadding,
+  bool canPop = false,
+  void Function(bool)? onPopInvoked,
 }) {
   return showDialog(
     context: context,
@@ -83,6 +87,8 @@ Future<String?> prompt(
         titlePadding: titlePadding,
         buttonPadding: buttonPadding,
         iconPadding: iconPadding,
+        canPop: canPop,
+        onPopInvoked: onPopInvoked,
       );
     },
   );
@@ -115,6 +121,8 @@ class _PromptDialog extends StatefulWidget {
     this.titlePadding,
     this.buttonPadding,
     this.iconPadding,
+    required this.canPop,
+    this.onPopInvoked,
   });
 
   final Widget? title;
@@ -142,6 +150,8 @@ class _PromptDialog extends StatefulWidget {
   final EdgeInsets? titlePadding;
   final EdgeInsets? buttonPadding;
   final EdgeInsets? iconPadding;
+  final bool canPop;
+  final void Function(bool)? onPopInvoked;
 
   @override
   __PromptDialogState createState() => __PromptDialogState();
@@ -165,11 +175,7 @@ class __PromptDialogState extends State<_PromptDialog> {
 
   @override
   Widget build(BuildContext context) {
-    return WillPopScope(
-      onWillPop: () async {
-        Navigator.pop(context, null);
-        return true;
-      },
+    return PopScope(
       child: AlertDialog(
         insetPadding: widget.insetPadding,
         contentPadding: widget.contentPadding,
@@ -244,6 +250,8 @@ class __PromptDialogState extends State<_PromptDialog> {
           ),
         ],
       ),
+      canPop: widget.canPop,
+      onPopInvoked: widget.onPopInvoked,
     );
   }
 }
