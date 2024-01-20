@@ -98,3 +98,7 @@
 # 1.0.14
 
   * Replace WillPopScope to PopScope.
+
+# 1.0.15
+
+  * Add maxLength parameters.

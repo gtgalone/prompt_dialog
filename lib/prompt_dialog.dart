@@ -24,6 +24,7 @@ import 'package:flutter/material.dart';
 /// The `decoration` argument will allow modification of the text field decoration. The `hintText` and `suffixIcon` fields will be overridden.\
 /// The `canPop` argument is `canPop` of PopScope.\
 /// The `onPopInvoked` argument is `onPopInvoked` of PopScope.
+/// The `maxLength` argument will be maxLength in TextFormField of alert dialog.\
 ///
 /// Returns a [Future<String?>].
 Future<String?> prompt(
@@ -56,6 +57,7 @@ Future<String?> prompt(
   EdgeInsets? iconPadding,
   bool canPop = false,
   void Function(bool)? onPopInvoked,
+  int? maxLength,
 }) {
   return showDialog(
     context: context,
@@ -89,6 +91,7 @@ Future<String?> prompt(
         iconPadding: iconPadding,
         canPop: canPop,
         onPopInvoked: onPopInvoked,
+        maxLength: maxLength,
       );
     },
   );
@@ -107,6 +110,7 @@ class _PromptDialog extends StatefulWidget {
     required this.textAlign,
     required this.decoration,
     required this.insetPadding,
+    required this.canPop,
     this.title,
     this.textOK,
     this.textCancel,
@@ -121,8 +125,8 @@ class _PromptDialog extends StatefulWidget {
     this.titlePadding,
     this.buttonPadding,
     this.iconPadding,
-    required this.canPop,
     this.onPopInvoked,
+    this.maxLength,
   });
 
   final Widget? title;
@@ -152,6 +156,7 @@ class _PromptDialog extends StatefulWidget {
   final EdgeInsets? iconPadding;
   final bool canPop;
   final void Function(bool)? onPopInvoked;
+  final int? maxLength;
 
   @override
   __PromptDialogState createState() => __PromptDialogState();
@@ -176,6 +181,8 @@ class __PromptDialogState extends State<_PromptDialog> {
   @override
   Widget build(BuildContext context) {
     return PopScope(
+      canPop: widget.canPop,
+      onPopInvoked: widget.onPopInvoked,
       child: AlertDialog(
         insetPadding: widget.insetPadding,
         contentPadding: widget.contentPadding,
@@ -215,6 +222,7 @@ class __PromptDialogState extends State<_PromptDialog> {
               validator: widget.validator,
               minLines: widget.minLines,
               maxLines: widget.maxLines,
+              maxLength: widget.maxLength,
               autofocus: widget.autoFocus,
               keyboardType: widget.keyboardType,
               textInputAction: widget.textInputAction,
@@ -250,8 +258,6 @@ class __PromptDialogState extends State<_PromptDialog> {
           ),
         ],
       ),
-      canPop: widget.canPop,
-      onPopInvoked: widget.onPopInvoked,
     );
   }
 }
