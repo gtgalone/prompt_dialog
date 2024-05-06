@@ -25,6 +25,7 @@ import 'package:flutter/material.dart';
 /// The `canPop` argument is `canPop` of PopScope.\
 /// The `onPopInvoked` argument is `onPopInvoked` of PopScope.
 /// The `maxLength` argument will be maxLength in TextFormField of alert dialog.\
+/// The `inputFormatters` argument will be inputFormatters in TextFormField of alert dialog.\
 ///
 /// Returns a [Future<String?>].
 Future<String?> prompt(
@@ -58,6 +59,7 @@ Future<String?> prompt(
   bool canPop = false,
   void Function(bool)? onPopInvoked,
   int? maxLength,
+  List<TextInputFormatter>? inputFormatters,
 }) {
   return showDialog(
     context: context,
@@ -92,6 +94,7 @@ Future<String?> prompt(
         canPop: canPop,
         onPopInvoked: onPopInvoked,
         maxLength: maxLength,
+        inputFormatters: inputFormatters,
       );
     },
   );
@@ -127,6 +130,7 @@ class _PromptDialog extends StatefulWidget {
     this.iconPadding,
     this.onPopInvoked,
     this.maxLength,
+    this.inputFormatters,
   });
 
   final Widget? title;
@@ -157,6 +161,7 @@ class _PromptDialog extends StatefulWidget {
   final bool canPop;
   final void Function(bool)? onPopInvoked;
   final int? maxLength;
+  final List<TextInputFormatter>? inputFormatters;
 
   @override
   __PromptDialogState createState() => __PromptDialogState();
@@ -196,14 +201,16 @@ class __PromptDialogState extends State<_PromptDialog> {
             key: _formKey,
             child: TextFormField(
               controller: controller,
+              inputFormatters: widget.inputFormatters,
               decoration: widget.decoration.copyWith(
                 hintText: widget.hintText,
                 suffixIcon: widget.showPasswordIcon
                     ? IconButton(
                         icon: Icon(
                           Icons.remove_red_eye,
-                          color:
-                              stateObscureText ? Colors.grey : Colors.blueGrey,
+                          color: stateObscureText
+                              ? Colors.grey
+                              : Colors.blueGrey,
                         ),
                         onPressed: () {
                           stateObscureText = !stateObscureText;
