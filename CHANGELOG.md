@@ -102,3 +102,7 @@
 # 1.0.15
 
   * Add maxLength parameters.
+
+# 1.0.16
+
+  * Adding inputFormatters as parametter #22. Huge Thanks! @Spawin

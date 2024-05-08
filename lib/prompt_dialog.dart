@@ -1,6 +1,7 @@
 library prompt_dialog;
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 /// The `title` argument is used to title of alert dialog.\
 /// The `textOK` argument is used to text for 'OK' Button of alert dialog.\
@@ -208,9 +209,8 @@ class __PromptDialogState extends State<_PromptDialog> {
                     ? IconButton(
                         icon: Icon(
                           Icons.remove_red_eye,
-                          color: stateObscureText
-                              ? Colors.grey
-                              : Colors.blueGrey,
+                          color:
+                              stateObscureText ? Colors.grey : Colors.blueGrey,
                         ),
                         onPressed: () {
                           stateObscureText = !stateObscureText;
