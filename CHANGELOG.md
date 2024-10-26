@@ -106,3 +106,8 @@
 # 1.0.16
 
   * Adding inputFormatters as parametter #22. Huge Thanks! @Spawin
+
+# 1.0.17
+
+  * Add dispose text editing controller.(#24) Huge Thanks! @TechAurelian2
+  * Change from `onPopInvoked` to `onPopInvokedWithResult`

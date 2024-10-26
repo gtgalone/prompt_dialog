@@ -24,7 +24,7 @@ import 'package:flutter/services.dart';
 /// The `controller` argument will be controller in TextFormField of alert dialog.\
 /// The `decoration` argument will allow modification of the text field decoration. The `hintText` and `suffixIcon` fields will be overridden.\
 /// The `canPop` argument is `canPop` of PopScope.\
-/// The `onPopInvoked` argument is `onPopInvoked` of PopScope.
+/// The `onPopInvokedWithResult` argument is `onPopInvokedWithResult` of PopScope.
 /// The `maxLength` argument will be maxLength in TextFormField of alert dialog.\
 /// The `inputFormatters` argument will be inputFormatters in TextFormField of alert dialog.\
 ///
@@ -58,7 +58,7 @@ Future<String?> prompt(
   EdgeInsets? buttonPadding,
   EdgeInsets? iconPadding,
   bool canPop = false,
-  void Function(bool)? onPopInvoked,
+  void Function(bool, dynamic)? onPopInvokedWithResult,
   int? maxLength,
   List<TextInputFormatter>? inputFormatters,
 }) {
@@ -93,7 +93,7 @@ Future<String?> prompt(
         buttonPadding: buttonPadding,
         iconPadding: iconPadding,
         canPop: canPop,
-        onPopInvoked: onPopInvoked,
+        onPopInvokedWithResult: onPopInvokedWithResult,
         maxLength: maxLength,
         inputFormatters: inputFormatters,
       );
@@ -129,7 +129,7 @@ class _PromptDialog extends StatefulWidget {
     this.titlePadding,
     this.buttonPadding,
     this.iconPadding,
-    this.onPopInvoked,
+    this.onPopInvokedWithResult,
     this.maxLength,
     this.inputFormatters,
   });
@@ -160,7 +160,7 @@ class _PromptDialog extends StatefulWidget {
   final EdgeInsets? buttonPadding;
   final EdgeInsets? iconPadding;
   final bool canPop;
-  final void Function(bool)? onPopInvoked;
+  final void Function(bool, dynamic)? onPopInvokedWithResult;
   final int? maxLength;
   final List<TextInputFormatter>? inputFormatters;
 
@@ -169,8 +169,8 @@ class _PromptDialog extends StatefulWidget {
 }
 
 class __PromptDialogState extends State<_PromptDialog> {
-  late TextEditingController controller;
-  late bool stateObscureText = widget.obscureText;
+  late TextEditingController _controller;
+  late bool _stateObscureText = widget.obscureText;
 
   String? value;
 
@@ -179,16 +179,22 @@ class __PromptDialogState extends State<_PromptDialog> {
   @override
   void initState() {
     super.initState();
-    controller =
+    _controller =
         widget.controller ?? TextEditingController(text: widget.initialValue);
     value = widget.initialValue;
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     return PopScope(
       canPop: widget.canPop,
-      onPopInvoked: widget.onPopInvoked,
+      onPopInvokedWithResult: widget.onPopInvokedWithResult,
       child: AlertDialog(
         insetPadding: widget.insetPadding,
         contentPadding: widget.contentPadding,
@@ -201,7 +207,7 @@ class __PromptDialogState extends State<_PromptDialog> {
           child: Form(
             key: _formKey,
             child: TextFormField(
-              controller: controller,
+              controller: _controller,
               inputFormatters: widget.inputFormatters,
               decoration: widget.decoration.copyWith(
                 hintText: widget.hintText,
@@ -210,16 +216,16 @@ class __PromptDialogState extends State<_PromptDialog> {
                         icon: Icon(
                           Icons.remove_red_eye,
                           color:
-                              stateObscureText ? Colors.grey : Colors.blueGrey,
+                              _stateObscureText ? Colors.grey : Colors.blueGrey,
                         ),
                         onPressed: () {
-                          stateObscureText = !stateObscureText;
+                          _stateObscureText = !_stateObscureText;
                           setState(() {
-                            controller.selection = TextSelection.fromPosition(
+                            _controller.selection = TextSelection.fromPosition(
                               const TextPosition(offset: 0),
                             );
-                            controller.selection = TextSelection.fromPosition(
-                              TextPosition(offset: controller.text.length),
+                            _controller.selection = TextSelection.fromPosition(
+                              TextPosition(offset: _controller.text.length),
                             );
                           });
                         },
@@ -234,7 +240,7 @@ class __PromptDialogState extends State<_PromptDialog> {
               keyboardType: widget.keyboardType,
               textInputAction: widget.textInputAction,
               onChanged: (String text) => value = text,
-              obscureText: stateObscureText,
+              obscureText: _stateObscureText,
               obscuringCharacter: widget.obscuringCharacter,
               textCapitalization: widget.textCapitalization,
               onEditingComplete: () {
