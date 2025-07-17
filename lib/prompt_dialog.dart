@@ -9,6 +9,7 @@ import 'package:flutter/services.dart';
 /// The `initialValue` argument is used to an initial value of alert dialog.\
 /// The `isSelectedInitialValue` argument is used to select an initial value of alert dialog.\
 /// The `hintText` argument will be hintText in TextFormField of alert dialog.\
+/// The `helperText` argument will be helperText in TextFormField of alert dialog.\
 /// The `validator` argument will be validator in TextFormField of alert dialog.\
 /// The `minLines` argument will be minLines in TextFormField of alert dialog.\
 /// The `maxLines` argument will be maxLines in TextFormField of alert dialog.\
@@ -37,6 +38,7 @@ Future<String?> prompt(
   String? initialValue,
   bool isSelectedInitialValue = true,
   String? hintText,
+  String? helperText,
   String? Function(String?)? validator,
   int minLines = 1,
   int maxLines = 1,
@@ -73,6 +75,7 @@ Future<String?> prompt(
         initialValue: initialValue,
         isSelectedInitialValue: isSelectedInitialValue,
         hintText: hintText,
+        helperText: helperText,
         validator: validator,
         minLines: minLines,
         maxLines: maxLines,
@@ -120,6 +123,7 @@ class _PromptDialog extends StatefulWidget {
     this.textCancel,
     this.initialValue,
     this.hintText,
+    this.helperText,
     this.validator,
     this.keyboardType,
     this.textInputAction,
@@ -140,6 +144,7 @@ class _PromptDialog extends StatefulWidget {
   final String? initialValue;
   final bool isSelectedInitialValue;
   final String? hintText;
+  final String? helperText;
   final String? Function(String?)? validator;
   final int minLines;
   final int maxLines;
@@ -211,6 +216,7 @@ class __PromptDialogState extends State<_PromptDialog> {
               inputFormatters: widget.inputFormatters,
               decoration: widget.decoration.copyWith(
                 hintText: widget.hintText,
+                helperText: widget.helperText,
                 suffixIcon: widget.showPasswordIcon
                     ? IconButton(
                         icon: Icon(

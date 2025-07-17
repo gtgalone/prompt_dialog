@@ -1,50 +1,66 @@
-# 0.0.1
+# 1.0.18
 
-  * Publish initial version.
+  * Add helperText parameters.
 
-# 0.0.2
+# 1.0.17
 
-  * Add api document and will pop scope.
+  * Add dispose text editing controller.(#24) Huge Thanks! @TechAurelian2
+  * Change from `onPopInvoked` to `onPopInvokedWithResult`.
 
-# 0.0.3
+# 1.0.16
 
-  * Change passing as widget.
+  * Adding inputFormatters as parametter #22. Huge Thanks! @Spawin
 
-# 0.1.0
+# 1.0.15
 
-  * Add example main.
+  * Add maxLength parameters.
 
-# 0.1.1
+# 1.0.14
 
-  * Add `hintText`, `maxLines` and `minLines` properties.
+  * Replace WillPopScope to PopScope.
 
-# 0.1.2
+# 1.0.13
 
-  * Add `obscureText` and `obscuringCharacter` properties. Huge Thanks! @tpillow
+  * Add all padding parameters.
 
-# 0.1.3
+# 1.0.12
 
-  * Add `textCapitalization` property. Huge Thanks! @joachimvalente
+  * Make dialog to scrollable.
 
-# 0.1.4
+# 1.0.11
 
-  * Add `keyboardType`, `textInputAction` property.
+  * Add `decoration` property.(#20)
+  * Huge Thanks! @ArkinSolomon
 
-# 1.0.0
+# 1.0.10
 
-  * Apply null safety.
+  * Add `controller` property.(#19)
+  * Huge Thanks! @mitrakov
 
-# 1.0.1
+# 1.0.9
 
-  * Change default value of autofocus to true.
+  * Add `textAlign` property.(#16)
+  * Huge Thanks! @FelipeSamuel
 
-# 1.0.2
+# 1.0.8
 
-  * Add `onEditingComplete` property.(#6)
+  * Update example usage.(#14)
+  * Huge Thanks! @mjablecnik
 
-# 1.0.3
+# 1.0.7
 
-  * Fix for returning initialValue.(#8) Huge Thanks! @gnilron
+  * Fix the validator issue.(#12)
+  * Huge Thanks! @dakamojo
+
+# 1.0.6
+
+  * Add `isSelectedInitialValue` property.(#11)
+  * Huge Thanks! @hippyau
+
+# 1.0.5
+
+  * Add `validator` property.(#10)
+  * Huge Thanks! @cmorsucci
 
 # 1.0.4
 
@@ -52,62 +68,50 @@
   * Simpler fix for returning initialValue if no changes.
   * Huge Thanks! @FRFGCCEVCV
 
-# 1.0.5
+# 1.0.3
 
-  * Add `validator` property.(#10)
-  * Huge Thanks! @cmorsucci
+  * Fix for returning initialValue.(#8) Huge Thanks! @gnilron
 
-# 1.0.6
+# 1.0.2
 
-  * Add `isSelectedInitialValue` property.(#11)
-  * Huge Thanks! @hippyau
+  * Add `onEditingComplete` property.(#6)
 
-# 1.0.7
+# 1.0.1
 
-  * Fix the validator issue.(#12)
-  * Huge Thanks! @dakamojo
+  * Change default value of autofocus to true.
 
-# 1.0.8
+# 1.0.0
 
-  * Update example usage.(#14)
-  * Huge Thanks! @mjablecnik
+  * Apply null safety.
 
-# 1.0.9
+# 0.1.4
 
-  * Add `textAlign` property.(#16)
-  * Huge Thanks! @FelipeSamuel
+  * Add `keyboardType`, `textInputAction` property.
 
-# 1.0.10
+# 0.1.3
 
-  * Add `controller` property.(#19)
-  * Huge Thanks! @mitrakov
+  * Add `textCapitalization` property. Huge Thanks! @joachimvalente
 
-# 1.0.11
+# 0.1.2
 
-  * Add `decoration` property.(#20)
-  * Huge Thanks! @ArkinSolomon
+  * Add `obscureText` and `obscuringCharacter` properties. Huge Thanks! @tpillow
 
-# 1.0.12
+# 0.1.1
 
-  * Make dialog to scrollable.
+  * Add `hintText`, `maxLines` and `minLines` properties.
 
-# 1.0.13
+# 0.1.0
 
-  * Add all padding parameters.
+  * Add example main.
 
-# 1.0.14
+# 0.0.3
 
-  * Replace WillPopScope to PopScope.
+  * Change passing as widget.
 
-# 1.0.15
+# 0.0.2
 
-  * Add maxLength parameters.
+  * Add api document and will pop scope.
 
-# 1.0.16
+# 0.0.1
 
-  * Adding inputFormatters as parametter #22. Huge Thanks! @Spawin
-
-# 1.0.17
-
-  * Add dispose text editing controller.(#24) Huge Thanks! @TechAurelian2
-  * Change from `onPopInvoked` to `onPopInvokedWithResult`
+  * Publish initial version.
